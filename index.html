@@ -3,157 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Cricket Streaming</title>
-    <!-- Plyr CSS -->
-    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.12/plyr.css"/>
-
+    <title>UEFA Champions League 2024-25 Live Streaming</title>
+    <!-- Video.js CSS -->
+    <link href="https://vjs.zencdn.net/7.21.0/video-js.css" rel="stylesheet"/>
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #BBDEFB; /* Light blue background */
-            color: #333;
-            text-align: center;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #1c1c1c, #434343);
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            text-align: center;
+            color: #ffffff;
         }
 
         h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            color: #00796B; /* Aqua blue */
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+            font-size: 3em;
+            margin-top: 30px;
+            color: #FFD700;
         }
 
         h2 {
-            color: #00796B; /* Aqua blue for subheading */
-            margin-bottom: 20px;
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+            font-size: 2em;
+            color: #FFD700;
+            margin-bottom: 30px;
         }
 
         .video-container {
-            max-width: 850px;
-            margin: 20px auto;
+            max-width: 900px;
+            margin: 40px auto;
             border-radius: 10px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
             overflow: hidden;
-            background: white; /* White background for video container */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
         }
 
-        .plyr {
-            border-radius: 10px;
+        .video-container h3 {
+            font-size: 1.5em;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            color: #FFD700;
+        }
+
+        .video-js {
+            width: 100%;
+            height: 500px;
         }
 
         .button {
-            background-color: #00796B; /* Aqua blue button */
-            color: #fff;
-            padding: 12px 30px;
-            text-decoration: none;
+            display: inline-block;
+            background-color: #ffcc00;
+            color: #121212;
+            padding: 12px 24px;
             border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
+            text-decoration: none;
+            font-size: 1.2em;
             margin-top: 20px;
+            transition: background-color 0.3s ease;
         }
 
         .button:hover {
-            background-color: #004D40; /* Darker aqua blue on hover */
+            background-color: #e6b800;
         }
 
         footer {
-            margin-top: 30px;
+            margin-top: 40px;
             font-size: 0.9em;
-            color: #666;
+            color: #f5f5f5;
         }
 
-        /* Loader Styles */
-        #loader {
-            display: none; /* Hidden by default */
-            position: fixed;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1000;
-        }
-
-        .loader {
-            border: 8px solid #f3f3f3; /* Light grey */
-            border-top: 8px solid #00796B; /* Aqua blue */
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Responsive Styles */
+        /* Responsive Design */
         @media (max-width: 600px) {
             h1 {
                 font-size: 2em;
             }
 
-            .button {
-                padding: 10px 20px;
+            h2 {
+                font-size: 1.5em;
             }
 
-            .video-container {
-                width: 100%;
+            .video-js {
+                height: 300px;
+            }
+
+            .button {
+                padding: 10px 18px;
+                font-size: 1em;
             }
         }
     </style>
 </head>
 <body>
 
-    <h1>Live Cricket Streaming</h1>
-    <h2> India Vs Newzealand   </h2>
+    <h1>UEFA Champions League 2024-25 Live Streaming</h1>
+    <h2>Matchday 3 - 23 October 2024</h2>
 
+    <!-- Aston Villa vs Bologna -->
     <div class="video-container">
-        <div id="loader">
-            <div class="loader"></div>
-        </div>
-        <!-- Plyr video player -->
-        <video id="player" playsinline controls autoplay muted>
-            <source src="https://prod-sports-eng-cf.jiocinema.com/hls/live/2100305/uhd_akamai_ctv_avc_eng_indvsnz_181024/index.m3u8" type="application/x-mpegURL">
+        <h3>Aston Villa vs Bologna</h3>
+        <video id="astonvilla-vs-bologna" class="video-js vjs-default-skin" controls autoplay muted preload="auto" playsinline data-setup="{}">
+            <source src="https://dai.google.com/ssai/event/3b4sC3GDQiigmH7iMYfwTQ/master.m3u8" type="application/x-mpegURL">
+            Your browser does not support HTML5 video.
         </video>
     </div>
 
-    <p>Click the button below to join our Telegram channel:</p>
+    <!-- Juventus vs Stuttgart -->
+    <div class="video-container">
+        <h3>Juventus vs Stuttgart</h3>
+        <video id="juventus-vs-stuttgart" class="video-js vjs-default-skin" controls autoplay muted preload="auto" playsinline data-setup="{}">
+            <source src="https://dai.google.com/ssai/event/FgOj57oiSEyp5FLaDUhRWA/master.m3u8" type="application/x-mpegURL">
+            Your browser does not support HTML5 video.
+        </video>
+    </div>
+
+    <!-- Real Madrid vs Borussia Dortmund -->
+    <div class="video-container">
+        <h3>Real Madrid vs Borussia Dortmund</h3>
+        <video id="realmadrid-vs-dortmund" class="video-js vjs-default-skin" controls autoplay muted preload="auto" playsinline data-setup="{}">
+            <source src="https://dai.google.com/ssai/event/jirIBSMoQDWBeTr-f6WNpA/master.m3u8" type="application/x-mpegURL">
+            Your browser does not support HTML5 video.
+        </video>
+    </div>
+
+    <!-- Arsenal vs Shakhtar Donetsk -->
+    <div class="video-container">
+        <h3>Arsenal vs Shakhtar Donetsk</h3>
+        <video id="arsenal-vs-shakhtar" class="video-js vjs-default-skin" controls autoplay muted preload="auto" playsinline data-setup="{}">
+            <source src="https://dai.google.com/ssai/event/ARSsLLOjSl2bsGjkQB2UAw/master.m3u8" type="application/x-mpegURL">
+            Your browser does not support HTML5 video.
+        </video>
+    </div>
+
+    <p>Click the button below to join our Telegram channel for more updates:</p>
     <a href="https://t.me/+NFoX453eVVI4N2M1" class="button" target="_blank">Join Now</a>
 
     <footer>
         <p>&copy; 2024 FlickXDrive. All rights reserved.</p>
     </footer>
 
-    <!-- Plyr JS -->
-    <script src="https://cdn.plyr.io/3.6.12/plyr.polyfilled.js"></script>
+    <!-- Video.js JS -->
+    <script src="https://vjs.zencdn.net/7.21.0/video.min.js"></script>
     <script>
-        const player = new Plyr('#player', {
-            captions: { active: true, language: 'en' },
-            quality: {
-                default: 720,
-                options: [216, 360, 720, 1080], // Specify available quality options
-                forced: true, // Enforce the user's selection
-                onChange: (quality) => console.log(`Quality changed to: ${quality}`)
-            }
-        });
+        var players = [
+            videojs('astonvilla-vs-bologna'),
+            videojs('juventus-vs-stuttgart'),
+            videojs('realmadrid-vs-dortmund'),
+            videojs('arsenal-vs-shakhtar')
+        ];
 
-        // Show loader when loading
-        const loader = document.getElementById('loader');
-
-        player.on('ready', function() {
-            loader.style.display = 'block';
-        });
-
-        player.on('loadeddata', function() {
-            loader.style.display = 'none';
-        });
-
-        player.on('error', function() {
-            loader.style.display = 'none';
-            alert('Error loading the stream, please try again later.');
+        players.forEach(function(player) {
+            player.ready(function() {
+                player.muted(true);
+                player.autoplay(true);
+            });
         });
     </script>
+
 </body>
 </html>
