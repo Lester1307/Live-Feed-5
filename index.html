@@ -12,35 +12,28 @@
             background: linear-gradient(to right, #1c1c1c, #434343);
             margin: 0;
             padding: 0;
-            text-align: center;
             color: #ffffff;
         }
 
         h1 {
             font-size: 3em;
-            margin-top: 30px;
+            margin-top: 20px;
+            text-align: center;
             color: #FFD700;
         }
 
-        h2 {
-            font-size: 2em;
+        h3 {
+            font-size: 1.5em;
             color: #FFD700;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         .video-container {
             max-width: 900px;
-            margin: 40px auto;
+            margin: 30px auto;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-        }
-
-        .video-container h3 {
-            font-size: 1.5em;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            color: #FFD700;
         }
 
         .video-js {
@@ -48,25 +41,56 @@
             height: 500px;
         }
 
-        .button {
-            display: inline-block;
-            background-color: #ffcc00;
-            color: #121212;
-            padding: 12px 24px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 1.2em;
-            margin-top: 20px;
-            transition: background-color 0.3s ease;
+        .drawer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100%;
+            background-color: #333;
+            padding-top: 20px;
+            transform: translateX(-250px);
+            transition: 0.3s ease;
         }
 
-        .button:hover {
-            background-color: #e6b800;
+        .drawer a {
+            padding: 15px;
+            text-decoration: none;
+            color: #ffffff;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .drawer a:hover {
+            background-color: #575757;
+        }
+
+        .open-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 30px;
+            background-color: #FFD700;
+            color: #000;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 50%;
+        }
+
+        .main-content {
+            margin-left: 0;
+            transition: 0.3s ease;
+        }
+
+        .open {
+            transform: translateX(0);
         }
 
         footer {
             margin-top: 40px;
             font-size: 0.9em;
+            text-align: center;
             color: #f5f5f5;
         }
 
@@ -76,72 +100,93 @@
                 font-size: 2em;
             }
 
-            h2 {
-                font-size: 1.5em;
+            h3 {
+                font-size: 1.2em;
             }
 
             .video-js {
                 height: 300px;
-            }
-
-            .button {
-                padding: 10px 18px;
-                font-size: 1em;
             }
         }
     </style>
 </head>
 <body>
 
-    <h1>UEFA Champions League 2024-25 Live Streaming</h1>
-    <h2>Matchday 3 - 23 October 2024</h2>
-
-    <!-- Aston Villa vs Bologna -->
-    <div class="video-container">
-        <h3>Aston Villa vs Bologna</h3>
-        <video id="astonvilla-vs-bologna" class="video-js vjs-default-skin" controls autoplay muted preload="auto" playsinline data-setup="{}">
-            <source src="https://dai.google.com/ssai/event/3b4sC3GDQiigmH7iMYfwTQ/master.m3u8" type="application/x-mpegURL">
-            Your browser does not support HTML5 video.
-        </video>
+    <!-- Drawer -->
+    <div id="drawer" class="drawer">
+        <a href="#" onclick="showMatch('astonvilla')">Aston Villa vs Bologna</a>
+        <a href="#" onclick="showMatch('juventus')">Juventus vs Stuttgart</a>
+        <a href="#" onclick="showMatch('realmadrid')">Real Madrid vs Borussia Dortmund</a>
+        <a href="#" onclick="showMatch('arsenal')">Arsenal vs Shakhtar Donetsk</a>
     </div>
 
-    <!-- Juventus vs Stuttgart -->
-    <div class="video-container">
-        <h3>Juventus vs Stuttgart</h3>
-        <video id="juventus-vs-stuttgart" class="video-js vjs-default-skin" controls autoplay muted preload="auto" playsinline data-setup="{}">
-            <source src="https://dai.google.com/ssai/event/FgOj57oiSEyp5FLaDUhRWA/master.m3u8" type="application/x-mpegURL">
-            Your browser does not support HTML5 video.
-        </video>
+    <!-- Button to open the drawer -->
+    <button id="openBtn" class="open-btn" onclick="toggleDrawer()">☰</button>
+
+    <!-- Main Content -->
+    <div id="main-content" class="main-content">
+        <h1>UEFA Champions League 2024-25 Live Streaming</h1>
+
+        <!-- Aston Villa vs Bologna (default match) -->
+        <div id="astonvilla" class="video-container">
+            <h3>Aston Villa vs Bologna</h3>
+            <video id="astonvilla-vs-bologna" class="video-js vjs-default-skin" controls autoplay muted preload="auto" playsinline data-setup="{}">
+                <source src="https://dai.google.com/ssai/event/3b4sC3GDQiigmH7iMYfwTQ/master.m3u8" type="application/x-mpegURL">
+                Your browser does not support HTML5 video.
+            </video>
+        </div>
+
+        <!-- Juventus vs Stuttgart -->
+        <div id="juventus" class="video-container" style="display: none;">
+            <h3>Juventus vs Stuttgart</h3>
+            <video id="juventus-vs-stuttgart" class="video-js vjs-default-skin" controls autoplay muted preload="auto" playsinline data-setup="{}">
+                <source src="https://dai.google.com/ssai/event/FgOj57oiSEyp5FLaDUhRWA/master.m3u8" type="application/x-mpegURL">
+                Your browser does not support HTML5 video.
+            </video>
+        </div>
+
+        <!-- Real Madrid vs Borussia Dortmund -->
+        <div id="realmadrid" class="video-container" style="display: none;">
+            <h3>Real Madrid vs Borussia Dortmund</h3>
+            <video id="realmadrid-vs-dortmund" class="video-js vjs-default-skin" controls autoplay muted preload="auto" playsinline data-setup="{}">
+                <source src="https://dai.google.com/ssai/event/jirIBSMoQDWBeTr-f6WNpA/master.m3u8" type="application/x-mpegURL">
+                Your browser does not support HTML5 video.
+            </video>
+        </div>
+
+        <!-- Arsenal vs Shakhtar Donetsk -->
+        <div id="arsenal" class="video-container" style="display: none;">
+            <h3>Arsenal vs Shakhtar Donetsk</h3>
+            <video id="arsenal-vs-shakhtar" class="video-js vjs-default-skin" controls autoplay muted preload="auto" playsinline data-setup="{}">
+                <source src="https://dai.google.com/ssai/event/ARSsLLOjSl2bsGjkQB2UAw/master.m3u8" type="application/x-mpegURL">
+                Your browser does not support HTML5 video.
+            </video>
+        </div>
+
+        <footer>
+            <p>&copy; 2024 FlickXDrive. All rights reserved.</p>
+        </footer>
     </div>
-
-    <!-- Real Madrid vs Borussia Dortmund -->
-    <div class="video-container">
-        <h3>Real Madrid vs Borussia Dortmund</h3>
-        <video id="realmadrid-vs-dortmund" class="video-js vjs-default-skin" controls autoplay muted preload="auto" playsinline data-setup="{}">
-            <source src="https://dai.google.com/ssai/event/jirIBSMoQDWBeTr-f6WNpA/master.m3u8" type="application/x-mpegURL">
-            Your browser does not support HTML5 video.
-        </video>
-    </div>
-
-    <!-- Arsenal vs Shakhtar Donetsk -->
-    <div class="video-container">
-        <h3>Arsenal vs Shakhtar Donetsk</h3>
-        <video id="arsenal-vs-shakhtar" class="video-js vjs-default-skin" controls autoplay muted preload="auto" playsinline data-setup="{}">
-            <source src="https://dai.google.com/ssai/event/ARSsLLOjSl2bsGjkQB2UAw/master.m3u8" type="application/x-mpegURL">
-            Your browser does not support HTML5 video.
-        </video>
-    </div>
-
-    <p>Click the button below to join our Telegram channel for more updates:</p>
-    <a href="https://t.me/+NFoX453eVVI4N2M1" class="button" target="_blank">Join Now</a>
-
-    <footer>
-        <p>&copy; 2024 FlickXDrive. All rights reserved.</p>
-    </footer>
 
     <!-- Video.js JS -->
     <script src="https://vjs.zencdn.net/7.21.0/video.min.js"></script>
     <script>
+        // Function to toggle the drawer
+        function toggleDrawer() {
+            var drawer = document.getElementById('drawer');
+            drawer.classList.toggle('open');
+        }
+
+        // Function to show the selected match and hide the rest
+        function showMatch(matchId) {
+            var matches = ['astonvilla', 'juventus', 'realmadrid', 'arsenal'];
+            matches.forEach(function(id) {
+                document.getElementById(id).style.display = (id === matchId) ? 'block' : 'none';
+            });
+            toggleDrawer();
+        }
+
+        // Default video setup
         var players = [
             videojs('astonvilla-vs-bologna'),
             videojs('juventus-vs-stuttgart'),
